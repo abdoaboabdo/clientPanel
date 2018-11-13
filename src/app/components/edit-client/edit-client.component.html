@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-md-6">
+    <a [routerLink]="['/client/'+id]" href="" class="btn btn-link"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to details</a>
+  </div>
+  <div class="col-md-6">
+    
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Edit Client
+  </div>
+  <div class="card-block">
+    <form #f="ngForm" (ngSubmit)="onsubmit(f)">
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" 
+        name="firstName" 
+        id="firstName" 
+        class="form-control" 
+        placeholder="Enter First name" 
+        aria-describedby="helpId" 
+        [(ngModel)]="client.firstName"
+        #clientFirstName="ngModel"
+        minlength="4"
+        required
+        >
+        <div *ngIf="clientFirstName.errors?.required && clientFirstName.touched" class="alert alert-danger">
+          First Name is required
+        </div>
+        <div *ngIf="clientFirstName.errors?.minlength && clientFirstName.touched" class="alert alert-danger">
+            Must be at least 4 chars
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="lastName">Last name</label>
+          <input type="text" 
+          name="lastName" 
+          id="lastName" 
+          class="form-control" 
+          placeholder="Enter Last name" 
+          aria-describedby="helpId" 
+          [(ngModel)]="client.lastName"
+          #clientlastName="ngModel"
+          minlength="4"
+          required
+          >
+          <div *ngIf="clientlastName.errors?.required && clientlastName.touched" class="alert alert-danger">
+            Last Name is required
+          </div>
+          <div *ngIf="clientlastName.errors?.minlength && clientlastName.touched" class="alert alert-danger">
+              Must be at least 4 chars
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" 
+          name="email" 
+          id="email" 
+          class="form-control" 
+          placeholder="Enter Email" 
+          aria-describedby="helpId" 
+          [(ngModel)]="client.email"
+          #clientemail="ngModel" 
+          required
+          >
+          <div *ngIf="clientemail.errors?.required && clientemail.touched" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" 
+          name="phone" 
+          id="phone" 
+          class="form-control" 
+          placeholder="Enter Phone" 
+          aria-describedby="helpId" 
+          [(ngModel)]="client.phone"
+          #clientphone="ngModel" 
+          minlength="10"
+          >
+          <div *ngIf="clientphone.errors?.minlength && clientphone.touched" class="alert alert-danger">
+            Add Valid number
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="balance">Balance</label>
+          <input type="number" 
+          name="balance" 
+          id="balance" 
+          class="form-control" 
+          placeholder="Enter Balance" 
+          aria-describedby="helpId" 
+          [(ngModel)]="client.balance"
+          #clientbalance="ngModel" 
+          [disabled]="disableBalanceOnEdit"
+          >
+        </div>
+        <input type="submit" value="Edit Client" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>
